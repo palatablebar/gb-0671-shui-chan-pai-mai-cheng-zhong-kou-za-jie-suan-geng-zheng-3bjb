@@ -1,4 +1,4 @@
-import io, csv, json, zipfile, hashlib
+import io, csv, json, zipfile, hashlib, base64
 from app.errors import BusinessError
 
 def serialize(result):
@@ -8,4 +8,8 @@ def serialize(result):
     with zipfile.ZipFile(buffer,'w',compression=zipfile.ZIP_DEFLATED) as archive:
         archive.writestr('manifest.json',json.dumps({**result['manifest'],'revision':result.get('revision',1),'status':result.get('status','待复核')},ensure_ascii=False,indent=2))
         archive.writestr('evidence.json',json.dumps({'counts':result['counts'],'views':result['views'],'quarantine':result['quarantine']},ensure_ascii=False,indent=2))
+        if result.get('netting'):
+            archive.writestr('netting.json',json.dumps({'netting':result['netting'],'ledger':result.get('command_ledger'),
+                'effective':result.get('netting_effective')},ensure_ascii=False,indent=2))
+            archive.writestr('source.csv',base64.b64decode(result['input_snapshot']['bytes_b64']))
     return buffer.getvalue()

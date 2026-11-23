@@ -28,11 +28,12 @@ def health():
 def create(payload:dict=Body(default={})):
     return store.save(DB_PATH,evaluate(payload))
 @app.post('/api/runs/{run_id}/rerun')
-def rerun(run_id:str):
+def rerun(run_id:str,payload:dict=Body(default={})):
     previous=store.get(DB_PATH,run_id)
     if 'input_snapshot' not in previous:
         raise BusinessError('INPUT_SNAPSHOT_MISSING','旧批缺少源快照，请重新导入')
-    return store.save(DB_PATH,evaluate({'dataset':previous['source']},snapshot=previous['input_snapshot']))
+    policy=payload.get('policy') if payload else None
+    return store.save(DB_PATH,evaluate({'dataset':previous['source']},snapshot=previous['input_snapshot'],policy=policy))
 @app.get('/api/runs')
 def runs():
     return store.history(DB_PATH)
@@ -44,6 +45,9 @@ def review(run_id:str,payload:dict=Body(...)):
     revision=payload.get('revision')
     if not isinstance(revision,int) or revision<1: raise BusinessError('BAD_REVISION','版本号须为正整数')
     return store.review(DB_PATH,run_id,revision)
+@app.get('/api/runs/{run_id}/commands')
+def commands(run_id:str):
+    return store.commands(DB_PATH,run_id)
 @app.get('/api/export/{run_id}')
 def export(run_id:str):
     result=store.get(DB_PATH,run_id)

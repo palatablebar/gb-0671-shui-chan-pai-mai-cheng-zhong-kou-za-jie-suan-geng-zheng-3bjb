@@ -1,0 +1,128 @@
+{
+  "ledger": "东港-clean-20261123",
+  "keys": [
+    "intake",
+    "conversion",
+    "pairing",
+    "auction",
+    "correction",
+    "reconcile",
+    "netting",
+    "archive"
+  ],
+  "market": "东港水产",
+  "currency": "CNY",
+  "weight_unit": "kg",
+  "netting_policy": "closed_first",
+  "entities": [
+    {
+      "ticket": "00001",
+      "entity": "E-101"
+    },
+    {
+      "ticket": "00002",
+      "entity": "E-101"
+    },
+    {
+      "ticket": "00003",
+      "entity": "E-101"
+    },
+    {
+      "ticket": "00004",
+      "entity": "E-101"
+    },
+    {
+      "ticket": "00005",
+      "entity": "E-101"
+    },
+    {
+      "ticket": "00006",
+      "entity": "E-101"
+    },
+    {
+      "ticket": "00007",
+      "entity": "E-101"
+    },
+    {
+      "ticket": "00008",
+      "entity": "E-102"
+    },
+    {
+      "ticket": "00009",
+      "entity": "E-102"
+    },
+    {
+      "ticket": "00010",
+      "entity": "E-102"
+    },
+    {
+      "ticket": "00011",
+      "entity": "E-102"
+    },
+    {
+      "ticket": "00012",
+      "entity": "E-102"
+    },
+    {
+      "ticket": "00013",
+      "entity": "E-102"
+    },
+    {
+      "ticket": "00014",
+      "entity": "E-102"
+    },
+    {
+      "ticket": "00015",
+      "entity": "E-103"
+    },
+    {
+      "ticket": "00016",
+      "entity": "E-103"
+    },
+    {
+      "ticket": "00017",
+      "entity": "E-103"
+    },
+    {
+      "ticket": "00018",
+      "entity": "E-103"
+    },
+    {
+      "ticket": "00019",
+      "entity": "E-103"
+    },
+    {
+      "ticket": "00020",
+      "entity": "E-103"
+    }
+  ],
+  "entity_names": {
+    "E-101": "陈记水产",
+    "E-102": "林记船队",
+    "E-103": "港兴档口"
+  },
+  "boat_charges": [
+    {
+      "ref": "SHIP-101",
+      "entity": "E-101",
+      "amount": "1800.00",
+      "state": "closed",
+      "revision": 1
+    },
+    {
+      "ref": "SHIP-102",
+      "entity": "E-102",
+      "amount": "1500.00",
+      "state": "closed",
+      "revision": 2
+    },
+    {
+      "ref": "SHIP-103",
+      "entity": "E-103",
+      "amount": "1200.00",
+      "state": "closed",
+      "revision": 1
+    }
+  ],
+  "pending_corrections": []
+}

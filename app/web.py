@@ -12,5 +12,6 @@ def render(request:Request,key):
     if run_id:
         state=store.get(DB_PATH,run_id)
     else:
-        state=store.save(DB_PATH,evaluate({'dataset':request.query_params.get('dataset','dirty')}))
+        state=store.save(DB_PATH,evaluate({'dataset':request.query_params.get('dataset','dirty')},
+                                          policy=request.query_params.get('policy')))
     return templates.TemplateResponse(request=request,name=f'{key}.html',context={'meta':META,'key':key,'state':state,'view':state['views'][key]})
